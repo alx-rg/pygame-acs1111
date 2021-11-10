@@ -1,8 +1,25 @@
 import pygame
 from pygame import color
+from random import randint
+from gameobject import GameObject
+from moose import Moose
+from ball import Ball
+
+
 pygame.init()
 
+# Get the clock
+clock = pygame.time.Clock()
+
 screen = pygame.display.set_mode([500, 500])
+moose = Moose()
+ball = Ball()
+sock = GameObject(77, 77, 'strawberry.png')
+truck = GameObject(200, 200, 'bomb.png')
+#surf = pygame.Surface((50, 50))
+#surf.fill((255,111, 33))
+#box = GameObject(120, 300, 50, 50)
+
 
 # Create a game loop
 running = True
@@ -14,17 +31,16 @@ while running:
 
   # Clear the screen
   screen.fill((255, 255, 255))
-  # Draw a cicrle 
-  i = 0
-  while (i < 9):
-    color = (211,211,211)
-    x_axis = ((i % 3) * 140) + 100
-    y_axis = (int(i / 3) * 140) + 100
-    position = (x_axis, y_axis)
-    i += 1
-    pygame.draw.circle(screen, color, position, 50)  
-    
+  
+  moose.move()
+  
+  # Draw the surface
+  moose.render(screen)
+  ball.render(screen)
+  sock.render(screen)
+  truck.render(screen)
   # Update the display
   pygame.display.flip()
+  clock.tick(60)
 
 
