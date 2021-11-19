@@ -4,8 +4,8 @@ from random import randint
 class Sock(GameObject):
   def __init__(self):  
     super(Sock, self).__init__(0, 0, 'apple.png')
-    self.dx = 0
     self.dy = (randint(0, 200) / 100) + 1
+    self.dx = 0
     self.reset()
     
   def move(self):
@@ -16,9 +16,9 @@ class Sock(GameObject):
   
   
   def reset(self):
-    topSpawn = [93, 218, 343]
+    lanes = [93, 218, 343]
     spawn = randint(0,2)
-    self.x = (topSpawn[spawn])
+    self.x = (lanes[spawn])
     # self.x = randint(50, 400)
     self.y = -64 
 

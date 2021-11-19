@@ -2,27 +2,37 @@ import pygame
 from pygame import color
 from random import randint
 from gameobject import GameObject
-from moose import Moose
+from bomb import Bomb
 from ball import Ball
 from player import Player
 from sock import Sock
 
-""" 
-TO DO:
-4th Step
-https://github.com/Tech-at-DU/Pygame-Tutorial/tree/main/04-handling-events
-"""
 pygame.init()
 
 # Get the clock
 clock = pygame.time.Clock()
 
 screen = pygame.display.set_mode([500, 500])
-moose = Moose()
+
+all_sprites = pygame.sprite.Group()
+fruit_sprites = pygame.sprite.Group()
+bomb_sprites = pygame.sprite.Group()
+
+bomb = Bomb()
+all_sprites.add(bomb)
+bomb_sprites.add(bomb)
+
 ball = Ball()
+all_sprites.add(ball)
+fruit_sprites.add(ball)
+
 sock = Sock()
+all_sprites.add(sock)
+fruit_sprites.add(sock)
+
 player = Player()
-truck = GameObject(200, 200, 'bomb.png')
+all_sprites.add(player)
+
 #surf = pygame.Surface((50, 50))
 #surf.fill((255,111, 33))
 #box = GameObject(120, 300, 50, 50)
@@ -58,19 +68,36 @@ while running:
 
   # Clear the screen
   screen.fill((255, 255, 255))
+  for entity in all_sprites:
+    entity.move()
+    entity.render(screen)
+
+  fruit = pygame.sprite.spritecollideany(player, fruit_sprites)
+  if fruit:
+    fruit.reset()
+
+  if pygame.sprite.collide_rect(player, bomb):
+    running = False
+
+
+  # bomb = pygame.sprite.spritecollideany(player, bomb_sprites)
+  # if bomb: 
+  #   all_sprites.reset()
   
-  sock.move()
-  sock.render(screen)
+  # sock.move()
+  # sock.render(screen)
 
-  ball.move()
-  ball.render(screen)
+  # ball.move()
+  # ball.render(screen)
 
-  player.move()
-  player.render(screen)
+  # player.move()
+  # player.render(screen)
 
   # Draw the surface
   
-  truck.render(screen)
+  # truck.render(screen)
+
+
   # Update the display
   pygame.display.flip()
   clock.tick(60)

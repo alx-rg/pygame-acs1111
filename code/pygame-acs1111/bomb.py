@@ -1,9 +1,9 @@
 from gameobject import GameObject
 from random import randint
 
-class Moose(GameObject):
+class Bomb(GameObject):
   def __init__(self):  
-    super(Moose, self).__init__(0, 0, 'dogblue3.png')
+    super(Bomb, self).__init__(0, 0, 'bomb.png')
     self.dx = 0
     self.dy = (randint(0, 200) / 100) + 1
     self.reset()
