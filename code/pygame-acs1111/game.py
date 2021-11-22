@@ -6,6 +6,7 @@ from bomb import Bomb
 from ball import Ball
 from player import Player
 from sock import Sock
+from ScoreBoard import ScoreBoard
 
 pygame.init()
 
@@ -27,17 +28,23 @@ ball = Ball()
 all_sprites.add(ball)
 fruit_sprites.add(ball)
 
+ball1 = Ball()
+all_sprites.add(ball1)
+fruit_sprites.add(ball1)
+
 sock = Sock()
 all_sprites.add(sock)
 fruit_sprites.add(sock)
 
+sock1 = Sock()
+all_sprites.add(sock1)
+fruit_sprites.add(sock1)
+
 player = Player()
 all_sprites.add(player)
 
-#surf = pygame.Surface((50, 50))
-#surf.fill((255,111, 33))
-#box = GameObject(120, 300, 50, 50)
-
+score = ScoreBoard(30, 30, 0)
+all_sprites.add(score)
 
 # Create a game loop
 running = True
@@ -65,8 +72,6 @@ while running:
 
         print('SPACE')
 
-
-
   # Clear the screen
   screen.fill((255, 255, 255))
   screen.blit(background, (0, 0))
@@ -77,33 +82,15 @@ while running:
   fruit = pygame.sprite.spritecollideany(player, fruit_sprites)
   if fruit:
     fruit.reset()
+    score.update(10)
 
   bomb_fruit = pygame.sprite.spritecollideany(bomb, fruit_sprites)
   if bomb_fruit:
     bomb_fruit.reset()
-
+    score.update(-20)
 
   if pygame.sprite.collide_rect(player, bomb):
     running = False
-
-
-  # bomb = pygame.sprite.spritecollideany(player, bomb_sprites)
-  # if bomb: 
-  #   all_sprites.reset()
-  
-  # sock.move()
-  # sock.render(screen)
-
-  # ball.move()
-  # ball.render(screen)
-
-  # player.move()
-  # player.render(screen)
-
-  # Draw the surface
-  
-  # truck.render(screen)
-
 
   # Update the display
   pygame.display.flip()

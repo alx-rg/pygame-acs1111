@@ -14,12 +14,6 @@ class Bomb(GameObject):
     if self.y > 500 or self.y < -64 or self.x > 500 or self.x < -64:
       self.reset()
   
-  # def move(self):
-  #   self.y += self.dy
-  #   self.x += self.dx
-  #   if self.y > 500:
-  #     self.reset()
-  
   def reset(self):
     random_direction = randint(1,4)
     lanes = (93, 218, 343)
@@ -45,17 +39,3 @@ class Bomb(GameObject):
       self.dx = 0
 
 
-    # self.direction = randint(1, 4)
-    # randomDirection = randint(-64, 500)
-    # lanes = [93, 218, 343]
-    # spawn = randint(0,2)
-    # self.x = (lanes[spawn])
-    # self.y = randomDirection 
-    # if self.direction == 1:
-    #     self.y = -64
-    # if self.direction == 2:
-    #     self.y = 500
-    # if self.direction == 3:
-    #     self.x = -64
-    # if self.direction == 4:
-    #     self.x = 500
