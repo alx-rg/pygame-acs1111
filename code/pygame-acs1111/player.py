@@ -3,7 +3,7 @@ lanes = [93, 218, 343]
 
 class Player(GameObject):
   def __init__ (self):
-    super(Player, self).__init__(0, 0, 'dogblue3.png')
+    super(Player, self).__init__(0, 0, 'images/dog.png')
     self.dx = 0
     self.dy = 0
     self.pos_x = 1

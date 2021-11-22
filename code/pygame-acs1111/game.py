@@ -13,6 +13,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 screen = pygame.display.set_mode([500, 500])
+background = pygame.image.load('images/grass.png')
 
 all_sprites = pygame.sprite.Group()
 fruit_sprites = pygame.sprite.Group()
@@ -68,6 +69,7 @@ while running:
 
   # Clear the screen
   screen.fill((255, 255, 255))
+  screen.blit(background, (0, 0))
   for entity in all_sprites:
     entity.move()
     entity.render(screen)
@@ -75,6 +77,11 @@ while running:
   fruit = pygame.sprite.spritecollideany(player, fruit_sprites)
   if fruit:
     fruit.reset()
+
+  bomb_fruit = pygame.sprite.spritecollideany(bomb, fruit_sprites)
+  if bomb_fruit:
+    bomb_fruit.reset()
+
 
   if pygame.sprite.collide_rect(player, bomb):
     running = False
